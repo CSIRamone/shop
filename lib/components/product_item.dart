@@ -38,7 +38,7 @@ class ProductItem extends StatelessWidget {
           ),
           backgroundColor: Colors.black38,
           title: Text(
-            product.title,
+            product.name,
             textAlign: TextAlign.center,
           ),
           trailing: IconButton(
