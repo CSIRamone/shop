@@ -30,7 +30,7 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
           PopupMenuButton(
             icon: const Icon(Icons.more_vert),
             itemBuilder: (_) => [
-              PopupMenuItem(
+              const PopupMenuItem(
                 value: FilterOptions.favorite,
                 child: Text('Somente Favoritos'),
               ),
@@ -54,7 +54,7 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
               onPressed: () {
                 Navigator.of(context).pushNamed(AppRoutes.CART);
               },
-              icon: Icon(Icons.shopping_cart),
+              icon: const Icon(Icons.shopping_cart),
             ),
             builder: (context, cart, child) => MyBadge(
               value: cart.itemsCount.toString(),

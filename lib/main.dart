@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         home: const ProductsOverviewPage(),
         routes: {
           AppRoutes.PRODUCT_DETAIL: (context) => const ProductDetailPage(),
-          AppRoutes.CART: (context) => CartPage(),
+          AppRoutes.CART: (context) => const CartPage(),
         },
         debugShowCheckedModeBanner: false,
       ),

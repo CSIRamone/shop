@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
 
 class MyBadge extends StatelessWidget {
@@ -25,7 +26,7 @@ class MyBadge extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               color: color ?? Theme.of(context).hintColor,
             ),
-            constraints: BoxConstraints(
+            constraints: const BoxConstraints(
               maxHeight: 16,
               minWidth: 16,
             ),

@@ -4,7 +4,7 @@ import 'package:shop/data/dummy_data.dart';
 import 'product.dart';
 
 class ProductList with ChangeNotifier {
-  List<Product> _items = dummyData;
+  final List<Product> _items = dummyData;
 
   List<Product> get items => [..._items];
   List<Product> get favoriteItems =>
