@@ -4,7 +4,7 @@ import 'package:shop/components/myBadge.dart';
 import 'package:shop/utils/app_routes.dart';
 
 import '../../components/product_grid.dart';
-import '../cart.dart';
+import '../cartNew.dart';
 
 enum FilterOptions {
   favorite,

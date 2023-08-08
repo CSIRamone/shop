@@ -7,7 +7,7 @@ import 'package:shop/models/pages/products_overview_page.dart';
 import 'package:shop/models/product_list.dart';
 import 'package:shop/utils/app_routes.dart';
 
-import 'models/cart.dart';
+import 'models/cartNew.dart';
 
 void main() {
   runApp(const MyApp());
