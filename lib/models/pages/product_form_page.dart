@@ -10,6 +10,8 @@ class ProductFormPage extends StatefulWidget {
 class _ProductFormPageState extends State<ProductFormPage> {
   @override
   Widget build(BuildContext context) {
+    final _priceFocus = FocusNode();
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
@@ -25,7 +27,20 @@ class _ProductFormPageState extends State<ProductFormPage> {
                   labelText: 'Nome',
                 ),
                 textInputAction: TextInputAction.next,
-              )
+                onFieldSubmitted: (value) {
+                  FocusScope.of(context).requestFocus(_priceFocus);
+                },
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Preço',
+                ),
+                textInputAction: TextInputAction.next,
+                focusNode: _priceFocus,
+                keyboardType: TextInputType.numberWithOptions(
+                  decimal: true,
+                ),
+              ),
             ],
           ),
         ),
