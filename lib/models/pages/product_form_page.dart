@@ -15,6 +15,21 @@ class _ProductFormPageState extends State<ProductFormPage> {
         backgroundColor: Theme.of(context).primaryColor,
         title: Text('Formulário de Produtos'),
       ),
+      body: Padding(
+        padding: const EdgeInsets.all(15),
+        child: Form(
+          child: ListView(
+            children: [
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Nome',
+                ),
+                textInputAction: TextInputAction.next,
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
