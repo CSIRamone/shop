@@ -10,6 +10,7 @@ class AppDrawer extends StatelessWidget {
       child: Column(
         children: [
           AppBar(
+            backgroundColor: Theme.of(context).primaryColor,
             title: const Text('Bem vindo usuario!'),
             automaticallyImplyLeading: false,
           ),
