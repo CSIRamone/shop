@@ -124,6 +124,15 @@ class _ProductFormPageState extends State<ProductFormPage> {
                 },
                 onSaved: (price) =>
                     _formData['price'] = double.parse(price ?? '0.0'),
+                    validator: (_price){
+                      final priceString = _price ?? '';
+                      final price = double.tryParse(priceString) ?? -1;
+
+                      if (price <= 0){
+                        return 'Informe um preço válido';
+                      }
+                      return null;
+                    },
               ),
               TextFormField(
                 decoration: InputDecoration(
