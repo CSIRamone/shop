@@ -35,6 +35,14 @@ class _ProductFormPageState extends State<ProductFormPage> {
     _imageUrlFocus.addListener(updateImage);
   }
 
+  bool isValidImageUrl(String url){
+    bool isValidUrl = Uri.tryParse(url)?.hasAbsolutePath ?? false;
+    bool endsWithFile = url.toLowerCase().endsWith('.png') ||
+    url.toLowerCase().endsWith('.jpg') ||
+    url.toLowerCase().endsWith('.jpeg');
+    return isValidUrl && endsWithFile;
+  }
+
   void _submitForm() {
     final isValid = _formKey.currentState?.validate() ?? false;\
 
@@ -127,6 +135,17 @@ class _ProductFormPageState extends State<ProductFormPage> {
                 maxLines: 3,
                 onSaved: (description) =>
                     _formData['description'] = description ?? '',
+                validator: (_description) {
+                  final description = _description ?? '';
+
+                  if(description.trim().isEmpty){
+                    return 'Descrição é obrigatório';
+                  }
+                  if(description.trim().length < 10){
+                    return 'Descrição precisa no minimo de 10 letras.';
+                  }
+                  return null;
+                },
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -143,6 +162,13 @@ class _ProductFormPageState extends State<ProductFormPage> {
                       onFieldSubmitted: (_) => _submitForm(),
                       onSaved: (imageUrl) =>
                           _formData['imageUrl'] = imageUrl ?? '',
+                      validator: (_imageUrl){
+                        final imageUrl = _imageUrl ?? '';
+                        if(!isValidImageUrl(imageUrl)){
+                          return 'Informe uma url válida';
+                        }
+                        return null;
+                      },
                     ),
                   ),
                   Container(
