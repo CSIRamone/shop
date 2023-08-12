@@ -58,10 +58,30 @@ class _ProductFormPageState extends State<ProductFormPage> {
     Provider.of<ProductList>(
       context,
       listen: false,
-    ).addProduct(_formData as Product);
+    ).saveProduct(_formData);
     Navigator.of(context).pop();
 
     //print(_formData.values);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    if (_formData.isEmpty) {
+      final argument = ModalRoute.of(context)?.settings.arguments;
+
+      if (argument != null) {
+        final product = argument as Product;
+        _formData['id'] = product.id;
+        _formData['name'] = product.name;
+        _formData['price'] = product.price;
+        _formData['description'] = product.description;
+        _formData['imageUrl'] = product.imageUrl;
+
+        _imageUrlController.text = product.imageUrl;
+      }
+    }
   }
 
   void updateImage() {
@@ -88,6 +108,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
           child: ListView(
             children: [
               TextFormField(
+                initialValue: _formData['name']?.toString(),
                 decoration: InputDecoration(
                   labelText: 'Nome',
                 ),
@@ -109,6 +130,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                 },
               ),
               TextFormField(
+                initialValue: _formData['price']?.toString(),
                 decoration: InputDecoration(
                   labelText: 'Preço',
                 ),
@@ -133,6 +155,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                 },
               ),
               TextFormField(
+                initialValue: _formData['description']?.toString(),
                 decoration: InputDecoration(
                   labelText: 'Descrição',
                 ),
