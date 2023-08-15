@@ -38,43 +38,29 @@ class ProductItem extends StatelessWidget {
               onPressed: () {
                 showDialog(
                   context: context,
-                  builder: (context) {
-                    AlertDialog(
-                      title: Text('Exclusão'),
-                      content: Text('Confirma a Exclusao desse Produto'),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: Text('Cancelar'),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Provider.of<ProductList>(
-                              context,
-                              listen: false,
-                            ).deleteProduct(product);
-                            Navigator.of(context).pop();
-                          },
-                          child: Text('Excluir'),
-                        ),
-                      ],
-                    );
-                  },
+                  builder: (context) => AlertDialog(
+                    title: Text('Exclusão'),
+                    content: Text('Confirma a Exclusao desse Produto'),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('Cancelar'),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Provider.of<ProductList>(
+                            context,
+                            listen: false,
+                          ).deleteProduct(product);
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('Excluir'),
+                      ),
+                    ],
+                  ),
                 );
-
-                /*showDialog(
-                  context: context, 
-                  builder: (context) {
-                    return AlertDialog(
-          title: Text('Deletar'),
-          content: Text("Confirma exclusão desse Produto"),
-          actions: [
-            TextButton(
-              child: Text("Fechar"),
-              onPressed: () {
-                Navigator.of(context).pop();*/
               },
               icon: Icon(Icons.delete),
               color: Theme.of(context).colorScheme.error,
