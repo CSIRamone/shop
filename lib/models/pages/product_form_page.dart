@@ -103,16 +103,16 @@ class _ProductFormPageState extends State<ProductFormPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
-        title: Text('Formulário de Produtos'),
+        title: const Text('Formulário de Produtos'),
         actions: [
           IconButton(
             onPressed: _submitForm,
-            icon: Icon(Icons.save),
+            icon: const Icon(Icons.save),
           ),
         ],
       ),
       body: _isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : Padding(
               padding: const EdgeInsets.all(15),
               child: Form(
@@ -121,7 +121,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                   children: [
                     TextFormField(
                       initialValue: _formData['name']?.toString(),
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Nome',
                       ),
                       textInputAction: TextInputAction.next,
@@ -143,12 +143,12 @@ class _ProductFormPageState extends State<ProductFormPage> {
                     ),
                     TextFormField(
                       initialValue: _formData['price']?.toString(),
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Preço',
                       ),
                       textInputAction: TextInputAction.next,
                       focusNode: _priceFocus,
-                      keyboardType: TextInputType.numberWithOptions(
+                      keyboardType: const TextInputType.numberWithOptions(
                         decimal: true,
                       ),
                       onFieldSubmitted: (value) {
@@ -168,7 +168,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                     ),
                     TextFormField(
                       initialValue: _formData['description']?.toString(),
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Descrição',
                       ),
                       textInputAction: TextInputAction.next,
@@ -194,7 +194,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                       children: [
                         Expanded(
                           child: TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               labelText: 'Url da Imagem',
                             ),
                             textInputAction: TextInputAction.done,
