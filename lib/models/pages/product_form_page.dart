@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/models/product.dart';
 
@@ -48,7 +49,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
     return isValidUrl && endsWithFile;
   }
 
-  void _submitForm() {
+  Future<void> _submitForm() async {
     final isValid = _formKey.currentState?.validate() ?? false;
 
     if (!isValid) {
@@ -60,15 +61,16 @@ class _ProductFormPageState extends State<ProductFormPage> {
     setState(() {
       _isLoading = true;
     });
-
-    Provider.of<ProductList>(
-      context,
-      listen: false,
-    ).saveProduct(_formData).catchError((erro) {
-      return showDialog<void>(
+    try {
+      await Provider.of<ProductList>(
+        context,
+        listen: false,
+      ).saveProduct(_formData);
+    } catch (erro) {
+      await showDialog<void>(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Ocorreu um erro!'),
+          title: const Text('Ocorreu um erro!'),
           content: Text(erro.toString()),
           actions: [
             TextButton(
@@ -78,12 +80,10 @@ class _ProductFormPageState extends State<ProductFormPage> {
           ],
         ),
       );
-    }).then((value) {
+    } finally {
       setState(() => _isLoading = false);
       Navigator.of(context).pop();
-    });
-
-    //print(_formData.values);
+    }
   }
 
   @override
