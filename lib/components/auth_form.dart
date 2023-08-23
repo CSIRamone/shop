@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shop/models/auth.dart';
 
-enum AuthMode { Sigunp, Login }
+enum AuthMode { signup, login }
 
 class AuthForm extends StatefulWidget {
   const AuthForm({super.key});
@@ -15,26 +17,26 @@ class _AuthFormState extends State<AuthForm> {
 
   bool _isLoading = false;
 
-  AuthMode _authMode = AuthMode.Login;
+  AuthMode _authMode = AuthMode.login;
   final Map<String, String> _authData = {
     'email': '',
     'password': '',
   };
 
-  bool _isLogin() => _authMode == AuthMode.Login;
-  bool _isSignup() => _authMode == AuthMode.Sigunp;
+  bool _isLogin() => _authMode == AuthMode.login;
+  bool _isSignup() => _authMode == AuthMode.signup;
 
   void _switchAuthMode() {
     setState(() {
       if (_isLogin()) {
-        _authMode = AuthMode.Sigunp;
+        _authMode = AuthMode.signup;
       } else {
-        _authMode = AuthMode.Login;
+        _authMode = AuthMode.login;
       }
     });
   }
 
-  void _onSubmit() {
+  Future<void> _onSubmit() async {
     final isValid = _formKey.currentState?.validate() ?? false;
 
     if (!isValid) {
@@ -43,10 +45,16 @@ class _AuthFormState extends State<AuthForm> {
     setState(() => _isLoading = true);
     _formKey.currentState?.save();
 
+    Auth auth = Provider.of(context, listen: false);
+
     if (_isLogin()) {
       //login
     } else {
       //registrar
+      await auth.signup(
+        _authData['email']!,
+        _authData['password']!,
+      );
     }
 
     setState(() => _isLoading = false);
@@ -101,7 +109,7 @@ class _AuthFormState extends State<AuthForm> {
                       ? null
                       : (_password) {
                           final password = _password ?? '';
-                          if (password != _passwordController) {
+                          if (password != _passwordController.text) {
                             return 'Senhas informadas não conferem.';
                           }
                           return null;
