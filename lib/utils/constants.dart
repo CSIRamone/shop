@@ -1,4 +1,7 @@
 class Constants {
+  static const USER_FAVORITE_URL =
+      'https://shop-csi-default-rtdb.firebaseio.com/userFavorite';
+
   static const PRODUCT_BASE_URL =
       'https://shop-csi-default-rtdb.firebaseio.com/products';
 

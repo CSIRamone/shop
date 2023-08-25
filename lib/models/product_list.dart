@@ -38,7 +38,6 @@ class ProductList with ChangeNotifier {
           description: productData['description'],
           price: productData['price'],
           imageUrl: productData['imageUrl'],
-          isFavorite: productData['isFavorite'],
         ),
       );
     });
@@ -78,7 +77,6 @@ class ProductList with ChangeNotifier {
             "description": product.description,
             "price": product.price,
             "imageUrl": product.imageUrl,
-            "isFavorite": product.isFavorite,
           },
         ),
       );
@@ -123,19 +121,18 @@ class ProductList with ChangeNotifier {
           "description": product.description,
           "price": product.price,
           "imageUrl": product.imageUrl,
-          "isFavorite": product.isFavorite,
         },
       ),
     );
 
     final id = jsonDecode(response.body)["name"];
     _items.add(Product(
-        id: id,
-        name: product.name,
-        description: product.description,
-        price: product.price,
-        imageUrl: product.imageUrl,
-        isFavorite: product.isFavorite));
+      id: id,
+      name: product.name,
+      description: product.description,
+      price: product.price,
+      imageUrl: product.imageUrl,
+    ));
     notifyListeners();
   }
 }
