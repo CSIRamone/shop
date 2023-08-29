@@ -40,8 +40,8 @@ class _AuthFormState extends State<AuthForm>
     );
 
     _heightAnimation = Tween(
-      begin: Size(double.infinity, 310),
-      end: Size(double.infinity, 400),
+      begin: const Size(double.infinity, 310),
+      end: const Size(double.infinity, 400),
     ).animate(
       CurvedAnimation(
         parent: _animationController!,
@@ -76,7 +76,7 @@ class _AuthFormState extends State<AuthForm>
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Ocorreu um erro'),
+        title: const Text('Ocorreu um erro'),
         content: Text(msg),
         actions: [
           TextButton(
@@ -128,14 +128,13 @@ class _AuthFormState extends State<AuthForm>
     return Card(
       elevation: 12,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      child: AnimatedBuilder(
-        animation: _heightAnimation!,
-        builder: (context, childForm) => Container(
-            padding: const EdgeInsets.all(16),
-            //height: _isLogin() ? 310 : 400,
-            height: _heightAnimation?.value.height ?? (_isLogin() ? 310 : 400),
-            width: deviceSize.width * 0.75,
-            child: childForm),
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 400),
+        curve: Curves.easeIn,
+        padding: const EdgeInsets.all(16),
+        height: _isLogin() ? 310 : 400,
+        //height: _heightAnimation?.value.height ?? (_isLogin() ? 310 : 400),
+        width: deviceSize.width * 0.75,
         child: Form(
           key: _formKey,
           child: Column(
@@ -181,15 +180,12 @@ class _AuthFormState extends State<AuthForm>
                           return null;
                         },
                 ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               if (_isLoading)
-                CircularProgressIndicator()
+                const CircularProgressIndicator()
               else
                 ElevatedButton(
                   onPressed: _onSubmit,
-                  child: Text(
-                    _isLogin() ? 'Entrar' : 'Registrar',
-                  ),
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Theme.of(context).primaryColor,
                       shape: RoundedRectangleBorder(
@@ -199,12 +195,15 @@ class _AuthFormState extends State<AuthForm>
                         horizontal: 30,
                         vertical: 8,
                       )),
+                  child: Text(
+                    _isLogin() ? 'Entrar' : 'Registrar',
+                  ),
                 ),
-              Spacer(),
+              const Spacer(),
               TextButton(
                 onPressed: _switchAuthMode,
                 child: Text(
-                  style: TextStyle(),
+                  style: const TextStyle(),
                   _isLogin() ? 'Deseja Registrar?' : 'Já possui Conta?',
                 ),
               ),
