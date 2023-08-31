@@ -9,6 +9,7 @@ import 'package:shop/models/pages/product_form_page.dart';
 import 'package:shop/models/pages/products_overview_page.dart';
 import 'package:shop/models/product_list.dart';
 import 'package:shop/utils/app_routes.dart';
+import 'package:shop/utils/custom_route.dart';
 
 import 'models/cartNew.dart';
 import 'models/pages/auth_or_home_page.dart';
@@ -62,6 +63,12 @@ class MyApp extends StatelessWidget {
           hintColor: Colors.amber.shade900,
           highlightColor: Colors.greenAccent,
           fontFamily: 'Lato',
+          pageTransitionsTheme: PageTransitionsTheme(
+            builders: {
+              TargetPlatform.iOS: CustomPageTransitionsBuilder(),
+              TargetPlatform.android: CustomPageTransitionsBuilder(),
+            },
+          ),
         ),
         // home: const ProductsOverviewPage(),
         routes: {

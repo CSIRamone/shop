@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shop/models/pages/order_page.dart';
 import 'package:shop/utils/app_routes.dart';
+import 'package:shop/utils/custom_route.dart';
 
 import '../models/auth.dart';
 
@@ -34,6 +36,9 @@ class AppDrawer extends StatelessWidget {
             onTap: () {
               Navigator.of(context).pushReplacementNamed(
                 AppRoutes.ORDER,
+                //Navigator.of(context).pushReplacement(
+                //  CustomRoute(builder: (context) => const OrdersPage()),
+                //);
               );
             },
           ),
