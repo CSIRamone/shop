@@ -59,7 +59,8 @@ class ProductGridItem extends StatelessWidget {
         ),
         child: GestureDetector(
           child: FadeInImage(
-            placeholder: AssetImage('assets/imagens/product-placeholder.png'),
+            placeholder:
+                const AssetImage('assets/imagens/product-placeholder.png'),
             image: NetworkImage(product.imageUrl),
             fit: BoxFit.cover,
           ),
