@@ -18,18 +18,6 @@ class ProductGridItem extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: GridTile(
-        child: GestureDetector(
-          child: Image.network(
-            product.imageUrl,
-            fit: BoxFit.cover,
-          ),
-          onTap: () {
-            Navigator.of(context).pushNamed(
-              AppRoutes.PRODUCT_DETAIL,
-              arguments: product,
-            );
-          },
-        ),
         footer: GridTileBar(
           leading: Consumer<Product>(
             builder: (context, product, _) => IconButton(
@@ -68,6 +56,19 @@ class ProductGridItem extends StatelessWidget {
             icon: const Icon(Icons.shopping_cart),
             color: Theme.of(context).hintColor,
           ),
+        ),
+        child: GestureDetector(
+          child: FadeInImage(
+            placeholder: AssetImage('assets/imagens/product-placeholder.png'),
+            image: NetworkImage(product.imageUrl),
+            fit: BoxFit.cover,
+          ),
+          onTap: () {
+            Navigator.of(context).pushNamed(
+              AppRoutes.PRODUCT_DETAIL,
+              arguments: product,
+            );
+          },
         ),
       ),
     );
